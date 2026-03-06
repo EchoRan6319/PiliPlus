@@ -39,7 +39,7 @@ fonts:
 ```dart
 SwitchModel(
   title: '使用OPPO Sans字体',
-  subtitle: '仅在ColorOS设备上有效，用于解决系统字体被错误替换为OPPO Serif的问题',
+  subtitle: '推荐在ColorOS设备上开启，用于解决系统字体被错误替换为OPPO Serif的问题',
   leading: const Icon(Icons.font_download_outlined),
   setKey: 'useOppoSans',
   defaultVal: false,
@@ -93,26 +93,46 @@ final fontFamily = useOppoSans ? 'OPPOSans' : null;
 
 #### 6.1 当前配置
 - 项目使用本地修改后的 `canvas_danmaku` 库（通过 `path: canvas_danmaku` 引用）
+- `canvas_danmaku` 目录已添加到主项目的版本控制中
 
 #### 6.2 上游更新步骤
-1. **拉取上游更新**
-   - 进入 `canvas_danmaku` 目录
-   - 运行 `git pull` 拉取最新代码
+1. **拉取上游最新代码**
+   - 创建一个临时目录，例如 `temp_canvas_danmaku`
+   - 在该目录中克隆上游仓库：`git clone https://github.com/bggRGjQaUbCoE/canvas_danmaku.git`
+   - 切换到主分支：`git checkout main`
+   - 拉取最新更新：`git pull`
 
-2. **合并修改**
-   - 检查上游更新是否与我们的修改冲突
-   - 如果有冲突，手动解决
-   - 确保 `fontFamily` 相关的修改被保留
+2. **应用字体支持修改**
+   - 将我们之前对字体支持的修改应用到上游最新代码
+   - 主要修改包括：
+     - 在 `DanmakuOption` 类中添加 `fontFamily` 参数
+     - 更新 `DmUtils.generateParagraph` 方法，支持自定义字体
+     - 更新 `DmUtils.recordDanmakuImage` 方法，支持自定义字体
+     - 更新 `DmUtils.recordSpecialDanmakuImg` 方法，支持自定义字体
+     - 修改 `ScrollDanmakuPainter` 类，添加 `fontFamily` 参数
+     - 修改 `StaticDanmakuPainter` 类，添加 `fontFamily` 参数
+     - 修改 `SpecialDanmakuPainter` 类，添加 `fontFamily` 参数
+     - 在 `danmaku_screen.dart` 中传递 `fontFamily` 参数
 
-3. **验证构建**
+3. **替换本地目录**
+   - 将临时目录中修改后的 `canvas_danmaku` 代码复制到主项目的 `canvas_danmaku` 目录
+   - 确保覆盖所有相关文件
+
+4. **提交更新**
+   - 在主项目中运行 `git status` 检查更改
+   - 添加更改：`git add canvas_danmaku`
+   - 提交更改：`git commit -m "Update canvas_danmaku with latest upstream changes and font support"`
+   - 推送到远程仓库：`git push`
+
+5. **验证构建**
    - 运行 `flutter pub get` 更新依赖
    - 运行 `flutter build apk` 构建APK
    - 测试应用是否正常运行，弹幕字体是否正确显示
 
 #### 6.3 版本管理建议
-- 在 `canvas_danmaku` 目录中使用 git 进行版本管理
-- 创建一个分支来保存我们的修改，例如 `feature/font-family-support`
-- 每次上游更新后，将我们的修改合并到最新代码中
+- 保存一份我们修改的补丁文件，以便在每次上游更新时快速应用
+- 仔细检查上游更新是否与我们的修改冲突，如有冲突，需要手动解决
+- 每次上游更新后，都需要重新应用我们的字体支持修改
 
 ## 总结
 本方案通过集成OPPO Sans字体并提供用户开关选项，解决了ColorOS设备上的字体调用异常问题。同时，通过修改canvas_danmaku库，确保了弹幕字体也能正确映射。采用了独立的存储键和增量修改的方式，确保了与上游代码的兼容性。

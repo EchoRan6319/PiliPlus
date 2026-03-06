@@ -93,7 +93,7 @@ List<SettingsModel> get styleSettings => [
   ),
   SwitchModel(
     title: '使用OPPO Sans字体',
-    subtitle: '仅在ColorOS设备上有效，用于解决系统字体被错误替换为OPPO Serif的问题',
+    subtitle: '推荐在ColorOS设备上开启，用于解决系统字体被错误替换为OPPO Serif的问题',
     leading: const Icon(Icons.font_download_outlined),
     setKey: 'useOppoSans',
     defaultVal: false,
