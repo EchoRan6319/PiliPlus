@@ -58,6 +58,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // 启用代码混淆和资源压缩
+            isMinifyEnabled = true
+            isShrinkResources = true
         }
         debug {
             applicationIdSuffix = ".debug"
