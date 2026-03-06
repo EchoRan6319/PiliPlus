@@ -146,9 +146,7 @@ dependencies:
   #     url: https://github.com/bggRGjQaUbCoE/flutter_ns_danmaku.git
   #     ref: master
   canvas_danmaku:
-    git:
-      url: https://github.com/bggRGjQaUbCoE/canvas_danmaku.git
-      ref: main
+    path: canvas_danmaku
   # 状态栏图标控制
   # status_bar_control: ^3.2.1
   # 代理
@@ -359,6 +357,9 @@ flutter:
     - family: custom_icon
       fonts:
         - asset: assets/fonts/custom_icon.ttf
+    - family: OPPOSans
+      fonts:
+        - asset: assets/fonts/OPPO Sans 4.0.ttf
   #   - family: Jura-Bold
   #     fonts:
   #       - asset: assets/fonts/Jura-Bold.ttf

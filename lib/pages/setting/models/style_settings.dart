@@ -91,6 +91,14 @@ List<SettingsModel> get styleSettings => [
     onChanged: (value) => Get.forceAppUpdate(),
     onTap: _showFontWeightDialog,
   ),
+  SwitchModel(
+    title: '使用OPPO Sans字体',
+    subtitle: '仅在ColorOS设备上有效，用于解决系统字体被错误替换为OPPO Serif的问题',
+    leading: const Icon(Icons.font_download_outlined),
+    setKey: 'useOppoSans',
+    defaultVal: false,
+    onChanged: (value) => Get.forceAppUpdate(),
+  ),
   NormalModel(
     title: '界面缩放',
     getSubtitle: () => '当前缩放比例：${Pref.uiScale.toStringAsFixed(2)}',

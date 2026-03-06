@@ -960,4 +960,9 @@ abstract final class Pref {
 
   static double get touchSlopH =>
       _setting.get(SettingBoxKey.touchSlopH, defaultValue: 24.0);
+
+  static bool get useOppoSans =>
+      _setting.get('useOppoSans', defaultValue: false);
+
+  static set useOppoSans(bool value) => _setting.put('useOppoSans', value);
 }

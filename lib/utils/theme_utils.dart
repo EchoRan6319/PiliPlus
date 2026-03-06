@@ -18,10 +18,16 @@ abstract final class ThemeUtils {
     final fontWeight = appFontWeight == -1
         ? null
         : FontWeight.values[appFontWeight];
-    late final textStyle = TextStyle(fontWeight: fontWeight);
+    final useOppoSans = Pref.useOppoSans;
+    final fontFamily = useOppoSans ? 'OPPOSans' : null;
+    late final textStyle = TextStyle(
+      fontWeight: fontWeight,
+      fontFamily: fontFamily,
+    );
     ThemeData themeData = ThemeData(
       colorScheme: colorScheme,
       useMaterial3: true,
+      fontFamily: fontFamily,
       textTheme: fontWeight == null
           ? null
           : TextTheme(
@@ -54,6 +60,7 @@ abstract final class ThemeUtils {
           fontSize: 16,
           color: colorScheme.onSurface,
           fontWeight: fontWeight,
+          fontFamily: fontFamily,
         ),
       ),
       navigationBarTheme: NavigationBarThemeData(
